@@ -3,10 +3,10 @@
   "context": {
     "@aws-cdk/core:enableStackNameDuplicates": "true",
     "aws-cdk:enableDiffNoFail": "true",
-    "project": "e-learning",
+    "project": "projectName",
     "deployEnv": "production",
     "zipFileName": "upload.zip",
-    "repositoryName": "wordpress-4-elearning",
+    "repositoryName": "repositoryName",
     "branch": "master",
     "backlog-user": "user",
     "backlog-password": "password",

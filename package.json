@@ -21,10 +21,18 @@
     "typescript": "~3.7.2"
   },
   "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.36.0",
+    "@aws-cdk/aws-codebuild": "^1.36.0",
+    "@aws-cdk/aws-codedeploy": "^1.36.0",
+    "@aws-cdk/aws-codepipeline": "^1.36.0",
+    "@aws-cdk/aws-codepipeline-actions": "^1.36.0",
     "@aws-cdk/aws-ec2": "^1.36.0",
     "@aws-cdk/aws-elasticloadbalancingv2": "^1.36.0",
     "@aws-cdk/aws-elasticloadbalancingv2-targets": "^1.36.0",
     "@aws-cdk/aws-iam": "^1.36.0",
+    "@aws-cdk/aws-lambda": "^1.36.0",
+    "@aws-cdk/aws-rds": "^1.36.0",
+    "@aws-cdk/aws-s3": "^1.36.0",
     "@aws-cdk/core": "1.36.0",
     "source-map-support": "^0.5.16"
   }
