@@ -1,3 +1,4 @@
+cdk.json
 *.js
 !jest.config.js
 *.d.ts
@@ -10,5 +11,3 @@ cdk.out
 # Parcel build directories
 .cache
 .build
-
-cdk.json
