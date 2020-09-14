@@ -28,6 +28,7 @@ lambda functionとしてアップロードするのに必要なライブラリ�
 
 ### 事後作業
 1. 作成したRDSのパスワードを設定する (コンソールでやる)
+1. apigatewayのエンドポイントをBacklogのgitのWebhookに登録する
 
 # Welcome to your CDK TypeScript project!
 

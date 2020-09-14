@@ -14,4 +14,5 @@ export default interface MyStackProps extends StackProps {
     user: string;
     pass: string;
     zipFileName: string;
+    ssl: boolean;
 }

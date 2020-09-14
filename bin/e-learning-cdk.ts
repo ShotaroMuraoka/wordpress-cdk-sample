@@ -23,6 +23,7 @@ const props: MyStackProps = {
     user: app.node.tryGetContext('backlog-user'),
     pass: app.node.tryGetContext('backlog-password'),
     zipFileName: app.node.tryGetContext('zipFileName'),
+    ssl: app.node.tryGetContext('ssl'),
     params: {}
 };
 

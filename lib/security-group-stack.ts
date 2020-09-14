@@ -20,9 +20,13 @@ export default class SecurityGroupStack extends Stack {
             securityGroupName: 'alb-sg',
             vpc: props.vpc,
         });
-        this.albSecurityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(80));
-        // this.albSecurityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(443));
 
+        if (!!props.ssl) {
+            this.albSecurityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(443));
+        } else {
+            this.albSecurityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(80));
+        }
+        
         // EC2のSG
         this.ec2SecurityGroup = new SecurityGroup(this, 'Ec2SecurityGroup', {
             allowAllOutbound: true,

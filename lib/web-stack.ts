@@ -62,7 +62,13 @@ export default class WebStack extends Stack {
         let targets: InstanceIdTarget[];
         targets = [new InstanceIdTarget(this.instance.instanceId, 80)];
 
-        appListener = this.alb.addListener('AppListener', {port: 80});
+        if (!!props.ssl) {
+            appListener = this.alb.addListener('AppListener', {port: 443});
+            appListener.addCertificates('AppCertificateArns', [{certificateArn: props.certificateArn}]);
+        } else {
+            appListener = this.alb.addListener('AppListener', {port: 80});
+        }
+        
         appListener.addTargets('AppTarget', {
             targetGroupName: `${props.prefix}AppTarget`,
             port: 80,
