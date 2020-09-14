@@ -43,7 +43,7 @@ export default class WebStack extends Stack {
             'systemctl start docker',
             'curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose',
             'chomd +x /usr/local/bin/docker-compose',
-            'wget https://aws-codedeploy-us-west-2.s3.us-west-2.amazonaws.com/latest/install',
+            'wget https://aws-codedeploy-ap-northeast-1.s3.ap-northeast-1.amazonaws.com/latest/install',
             'chmod +x ./install',
             './install auto',
             'systemctl enable codedeploy-agent',
