@@ -5,4 +5,5 @@ export { default as WebStack } from './web-stack';
 export { default as RdsStack } from './rds-stack';
 export { default as S3Stack } from './s3-stack';
 export { default as CodeStack } from './codepipeline-stack';
-export { default as LamndaStack } from "./lambda-stack";
+export { default as LambdaStack } from "./lambda-stack";
+export { default as TagAspect } from "./tag-aspect";

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import {App} from '@aws-cdk/core';
-import { NetworkStack, MyStackProps, S3Stack, } from '../lib';
+import { NetworkStack, MyStackProps, S3Stack, TagAspect, } from '../lib';
 import RdsStack from '../lib/rds-stack';
 import IamStack from '../lib/iam-stack';
 import WebStack from '../lib/web-stack';
@@ -12,7 +12,7 @@ import CodeStack from '../lib/codepipeline-stack';
 const app = new App();
 const props: MyStackProps = {
     project: app.node.tryGetContext('project'),
-    deployEnv: app.node.tryGetContext('env'),
+    deployEnv: app.node.tryGetContext('deployEnv'),
     domain: app.node.tryGetContext('domain'),
     zoneId: app.node.tryGetContext('zoneId'),
     certificateArn: app.node.tryGetContext('certificateArn'),
@@ -21,7 +21,6 @@ const props: MyStackProps = {
     repositoryName: app.node.tryGetContext('repositoryName'),
     branch: app.node.tryGetContext('branch'),
     user: app.node.tryGetContext('backlog-user'),
-    pass: app.node.tryGetContext('backlog-password'),
     zipFileName: app.node.tryGetContext('zipFileName'),
     ssl: app.node.tryGetContext('ssl'),
     params: {}
@@ -76,3 +75,9 @@ const codeStack: CodeStack = new CodeStack(app, 'CodeStack', {
     artifactS3Bucket: s3Stack.artifactS3Bucket,
     ...props,
 });
+
+app.node.applyAspect(new TagAspect({
+    "Name": `${props.project}`,
+    "Creation": `${props.user} 2020/09/17`, // TODO: version情報をjsonに持つ.
+    "Description": `${props.project} Resources`
+}));

@@ -12,7 +12,6 @@ export default interface MyStackProps extends StackProps {
     repositoryName: string;
     branch: string;
     user: string;
-    pass: string;
     zipFileName: string;
     ssl: boolean;
 }

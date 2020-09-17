@@ -17,8 +17,6 @@ export default class LambdaStack extends Stack {
         const zipFileName = props.zipFileName;
         const repositoryName = props.repositoryName;
         const branch = props.branch;
-        const user = props.user;
-        const pass = props.pass;
 
         const getFunction = new Function(this, 'get-function', {
             functionName: this.stackName + '-getSourceFromBacklog',
@@ -31,13 +29,15 @@ export default class LambdaStack extends Stack {
                 'ZIP_FILE_NAME': zipFileName,
                 'REPOSITORY': repositoryName,
                 'BRANCH': branch,
-                'USER': user,
-                'PASS': pass,
             },
         });
         getFunction.addToRolePolicy(new PolicyStatement({
             resources: [`arn:aws:s3:::${bucketName}/${zipFileName}`],
             actions: ['s3:putObject'],
+        }));
+        getFunction.addToRolePolicy(new PolicyStatement({
+            resources: ['*'],
+            actions: ['sts:AssumeRole', 'ssm:GetParameters'],
         }));
 
         const api = new RestApi(this, 'api');

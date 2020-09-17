@@ -74,7 +74,7 @@ export default class WebStack extends Stack {
             port: 80,
             targets: targets,
             healthCheck: {
-                path: '/health.txt',
+                path: '/health_check.php',
             }
         });
 

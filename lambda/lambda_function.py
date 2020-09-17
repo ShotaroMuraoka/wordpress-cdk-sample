@@ -6,10 +6,9 @@ import shutil
 import boto3
 from dulwich import porcelain
 
+ssm = boto3.client('ssm')
 BUCKET_NAME = os.environ['BUCKET_NAME']
 ZIP_FILE_NAME = os.environ['ZIP_FILE_NAME']
-USER = os.environ['USER']
-PASS = os.environ['PASS']
 REPOSITORY = os.environ['REPOSITORY']
 BRANCH = os.environ['BRANCH']
 
@@ -24,10 +23,20 @@ def lambda_handler(event, context):
     print(f"repository:{repository} branch:{branch} uri:{url}")
 
     if repository == REPOSITORY and branch == BRANCH:
+        ssm_response = ssm.get_parameters(Names = ["el_backlog_user", "el_backlog_password"], WithDecryption = True)
+        params = {}
+        for param in ssm_response["Parameters"]:
+            params[ param["Name"] ] = param["Value"]
+        if len( ssm_response["InvalidParameters"]) > 0:
+            return {
+                "error": "param_name_error",
+                "param_name": ', '.join( ssm_response[ 'InvalidParameters' ] )
+            }
+        userStr = urllib.parse.quote(params["el_backlog_user"])
+        passStr = urllib.parse.quote(params["el_backlog_password"])
+
         # gitパスの生成
         site = urllib.parse.urlparse(url)
-        userStr = urllib.parse.quote(USER)
-        passStr = urllib.parse.quote(PASS)
         uri = site.scheme +"://" + userStr + ":" + passStr +"@" + site.netloc + site.path + repository + ".git"
         
         # 作業ディレクトリの生成
