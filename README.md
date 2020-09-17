@@ -7,6 +7,40 @@ Backlogプロジェクトから直でリリースできるやつ
     - ALBのDNS名で良ければいらない
 - ACMが作成されていること
     - HTTPで良ければいらない
+- SSMパラメータストアにBacklogユーザーのID, PWを用意しておくこと (Gitユーザー)
+    - el_backlog_password
+    - el_backlog_user
+- CDK用のIAMユーザーを準備しておくこと
+    - チュートリアルにある `AdministratorAccess` は怒られるんでやめとくこと。。
+    - インラインポリシーにしないとアタッチするポリシーの数で怒られるんで気をつける
+    - とりあえず以下のポリシーで動くことは確認済み
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "iam:*",
+                "secretsmanager:*",
+                "rds:*",
+                "apigateway:*",
+                "s3:*",
+                "ssm:*",
+                "lambda:*",
+                "codedeploy:*",
+                "codepipeline:*",
+                "ec2:*",
+                "cloudformation:*",
+                "elasticloadbalancing:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
 
 ### ビルド (TypeScript)
 1. `npm install` で必要なパッケージをインストールしておく
