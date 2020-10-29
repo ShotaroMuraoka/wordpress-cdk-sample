@@ -1,6 +1,9 @@
 # WordPressを構築するCDK
 Backlogプロジェクトから直でリリースできるやつ
 
+# Requirement
+- aws-cdk 1.36.0
+
 ## How To Use
 ### 事前作業
 - ドメインを取得しておく
@@ -46,13 +49,6 @@ Backlogプロジェクトから直でリリースできるやつ
 1. `npm install` で必要なパッケージをインストールしておく
 1. `npm run build` でコンパイルする
 
-### ビルド (Python)
-lambda functionとしてアップロードするのに必要なライブラリをインストールしてzipにする.
-[ここ](https://github.com/pressmaninc/SlackArchivesChannel/tree/master/lambda)参照のこと.
-1. `cd lambda`
-1. `docker build -t e-learning-python-package-manager .` (ぶっちゃけコンテナ名は何でも良い)
-1. `docker run -v "$PWD":/var/task e-learning-python-package-manager`
-
 ### デプロイ
 1. `cdk.sample.json` をコピーして `cdk.json` を作成する
 1. 必要なパラメータを追記していく
@@ -62,7 +58,6 @@ lambda functionとしてアップロードするのに必要なライブラリ�
 
 ### 事後作業
 1. 作成したRDSのパスワードを設定する (コンソールでやる)
-1. apigatewayのエンドポイントをBacklogのgitのWebhookに登録する
 
 # Welcome to your CDK TypeScript project!
 

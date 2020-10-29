@@ -8,10 +8,7 @@ export default interface MyStackProps extends StackProps {
     certificateArn: string;
     allowIp: string[];
     prefix: string;
-    params: any;
-    repositoryName: string;
-    branch: string;
     user: string;
-    zipFileName: string;
+    params: any;
     ssl: boolean;
 }

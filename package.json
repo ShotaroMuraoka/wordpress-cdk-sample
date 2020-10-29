@@ -1,8 +1,8 @@
 {
-  "name": "e-learning-cdk",
+  "name": "wordpress-cdk",
   "version": "0.1.0",
   "bin": {
-    "e-learning-cdk": "bin/e-learning-cdk.js"
+    "wordpress-cdk": "bin/wordpress-cdk.js"
   },
   "scripts": {
     "build": "tsc",

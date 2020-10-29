@@ -1,6 +1,6 @@
 // import { expect as expectCDK, matchTemplate, MatchStyle } from '@aws-cdk/assert';
 // import * as cdk from '@aws-cdk/core';
-// import * as ELearningCdk from '../lib/e-learning-cdk-stack';
+// import * as ELearningCdk from '../lib/wordpress-cdk-stack';
 
 // test('Empty Stack', () => {
 //     const app = new cdk.App();

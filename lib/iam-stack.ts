@@ -1,5 +1,5 @@
-import { Stack, isResolvableObject, Construct } from "@aws-cdk/core"
-import { IRole, Role, ServicePrincipal, ManagedPolicy, PolicyStatement, Effect } from "@aws-cdk/aws-iam";
+import { Stack, Construct } from "@aws-cdk/core"
+import { IRole, Role, ServicePrincipal, ManagedPolicy } from "@aws-cdk/aws-iam";
 import { MyStackProps } from ".";
 
 export default class IamStack extends Stack {
@@ -15,7 +15,6 @@ export default class IamStack extends Stack {
                 ManagedPolicy.fromAwsManagedPolicyName('AmazonS3FullAccess'),
                 ManagedPolicy.fromAwsManagedPolicyName('AWSCodeDeployFullAccess'),
                 ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'),
-                // ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMReadOnlyAccess'),
             ],
         });
     }

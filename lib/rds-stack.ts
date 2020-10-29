@@ -18,7 +18,7 @@ export default class RdsStack extends Stack {
             databaseName: `${props.prefix}Db`,
             engine: DatabaseInstanceEngine.MYSQL,
             engineVersion: '5.7.30',
-            instanceClass: InstanceType.of(InstanceClass.T3, InstanceSize.MICRO),
+            instanceClass: InstanceType.of(InstanceClass.T2, InstanceSize.MICRO),
             masterUsername: 'pman',
             vpc: props.vpc,
             vpcPlacement: {subnetType: SubnetType.ISOLATED},

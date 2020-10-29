@@ -1,5 +1,5 @@
 import {Stack, Tag,Construct} from '@aws-cdk/core';
-import {SubnetType, Vpc, Subnet} from '@aws-cdk/aws-ec2';
+import {SubnetType, Vpc} from '@aws-cdk/aws-ec2';
 import MyStackProps from './my-stack-props';
 
 export default class NetWorkStack extends Stack {

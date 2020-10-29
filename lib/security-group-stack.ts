@@ -1,6 +1,6 @@
 import { Stack, Construct } from "@aws-cdk/core";
 import { MyStackProps } from ".";
-import { IVpc, SecurityGroup, Peer, Port, CfnSecurityGroup } from "@aws-cdk/aws-ec2";
+import { IVpc, SecurityGroup, Peer, Port } from "@aws-cdk/aws-ec2";
 
 interface SecurityGroupStackProps extends MyStackProps {
     vpc: IVpc;
@@ -34,9 +34,6 @@ export default class SecurityGroupStack extends Stack {
             vpc: props.vpc,
         });
         this.ec2SecurityGroup.addIngressRule(this.albSecurityGroup, Port.tcp(80));
-        // TODO: SSH接続したい場合は設定すること.
-        // const ip = '';
-        // this.ec2SecurityGroup.addIngressRule(Peer.ipv4(ip), Port.tcp(22));
 
         // RDSのSG
         this.rdsSecurityGroup = new SecurityGroup(this, 'RdsSecurityGroup', {

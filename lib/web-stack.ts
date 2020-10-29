@@ -2,7 +2,7 @@ import MyStackProps from "./my-stack-props";
 import { Stack, Construct, Duration } from "@aws-cdk/core";
 import { InstanceIdTarget } from '@aws-cdk/aws-elasticloadbalancingv2-targets';
 import { ApplicationListener, ApplicationLoadBalancer } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IVpc, Port, Instance, InstanceType, InstanceClass, InstanceSize, AmazonLinuxImage, AmazonLinuxGeneration, SubnetType, SecurityGroup } from "@aws-cdk/aws-ec2";
+import { IVpc, Instance, InstanceType, InstanceClass, InstanceSize, AmazonLinuxImage, AmazonLinuxGeneration, SubnetType, SecurityGroup } from "@aws-cdk/aws-ec2";
 import { IRole } from "@aws-cdk/aws-iam";
 
 interface WebStackProps extends MyStackProps {
@@ -22,7 +22,7 @@ export default class WebStack extends Stack {
         this.instance = new Instance(this, 'Ec2', {
             instanceName: `${props.prefix}Ec2`,
             vpc: props.vpc,
-            instanceType: InstanceType.of(InstanceClass.T3A, InstanceSize.MICRO),
+            instanceType: InstanceType.of(InstanceClass.T2, InstanceSize.MICRO),
             machineImage: new AmazonLinuxImage({
                 generation: AmazonLinuxGeneration.AMAZON_LINUX_2,
             }),
@@ -77,13 +77,5 @@ export default class WebStack extends Stack {
                 path: '/health_check.php',
             }
         });
-
-        // TODO: ALB-EC2はhttp通信になることを留意すること.
-        // this.instance.connections.allowFrom(this.alb, Port.tcp(80));
-        // props.allowIp.forEach(ip => {
-        //     [22, 80].forEach(port => {
-        //         this.instance.connections.allowFrom(Peer.ipv4(ip), Port.tcp(port));
-        //     })
-        // });
     }
 }
